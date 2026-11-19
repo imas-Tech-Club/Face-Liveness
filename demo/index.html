@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Face Liveness Demo</title>
+<style>body{font-family:sans-serif;text-align:center}video{width:480px;border-radius:8px}
+#r{font-size:2rem;margin:1rem}.real{color:green}.attack{color:crimson}</style></head>
+<body><h1>Face Liveness</h1><video id="v" autoplay playsinline muted></video>
+<div id="r">...</div><div id="m"></div><canvas id="c" hidden></canvas>
+<script>
+const v=document.getElementById('v'),c=document.getElementById('c'),r=document.getElementById('r'),m=document.getElementById('m');
+const sid=crypto.randomUUID();
+navigator.mediaDevices.getUserMedia({video:true}).then(s=>{v.srcObject=s;loop()});
+async function loop(){
+  if(v.videoWidth){
+    c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);
+    const blob=await new Promise(res=>c.toBlob(res,'image/jpeg',0.9));
+    const f=new FormData();f.append('frame',blob,'f.jpg');f.append('session_id',sid);
+    try{const j=await (await fetch('/liveness',{method:'POST',body:f})).json();
+      r.textContent=j.label.toUpperCase();r.className=j.label;
+      m.textContent=`score ${j.score} · ${j.latency_ms} ms`;}catch(e){r.textContent='error'}
+  }
+  setTimeout(loop,300);
+}
+</script></body></html>
