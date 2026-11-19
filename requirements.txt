@@ -1,0 +1,8 @@
+numpy
+opencv-python-headless<5
+onnxruntime
+fastapi
+uvicorn[standard]
+python-multipart
+pytest
+httpx

@@ -1,0 +1,6 @@
+models/*.onnx
+data/*
+!data/.gitkeep
+__pycache__/
+.venv/
+.pdf
