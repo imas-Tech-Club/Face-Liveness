@@ -1,0 +1,18 @@
+# Todo el texto se guarda en el repo con finales de línea LF, sin importar el sistema de quien commitea.
+* text=auto eol=lf
+
+# Scripts de Windows: necesitan CRLF para ejecutarse bien.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binarios: nunca convertir ni mostrar diff.
+*.onnx binary
+*.pth binary
+*.pt binary
+*.tflite binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.mp4 binary
+*.pdf binary

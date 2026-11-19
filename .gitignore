@@ -1,0 +1,59 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Caches de herramientas
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Variables de entorno locales
+.env
+
+# --- Datos y modelos (no se versionan) ---
+# Set de prueba propio: fotos de personas, con consentimiento, que no deben salir de las máquinas del equipo.
+data/*
+!data/.gitkeep
+
+# Pesos de modelos: se descargan con scripts/download_models.py
+*.onnx
+*.pth
+*.pt
+*.tflite
+
+# Imágenes y videos sueltos (capturas, pruebas)
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.webp
+*.heic
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Papers y documentos de referencia
+*.pdf
+
+# --- Editores ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Sistemas operativos ---
+Thumbs.db
+desktop.ini
+.DS_Store
