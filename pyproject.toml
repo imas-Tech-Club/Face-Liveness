@@ -1,0 +1,27 @@
+# Configuración de herramientas. Las dependencias del proyecto van en requirements.txt.
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+# E/W: estilo (pycodestyle), F: errores (pyflakes), I: orden de imports,
+# B: errores probables (bugbear), UP: sintaxis moderna de Python.
+select = ["E", "W", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI declara los parámetros con llamadas en el valor por defecto (`File(...)`, `Form(None)`).
+# Es el uso correcto del framework, no un error: se le avisa a ruff para que no lo marque.
+extend-immutable-calls = [
+  "fastapi.Body",
+  "fastapi.Depends",
+  "fastapi.File",
+  "fastapi.Form",
+  "fastapi.Header",
+  "fastapi.Query",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Permite importar `app` desde los tests sin instalar el paquete.
+pythonpath = ["."]
